@@ -11,3 +11,7 @@ module "storage_account" {
 }
 
 
+module "vnet" {
+    source = "./modules/vnet"
+    depends_on = [module.vnet]   
+}
