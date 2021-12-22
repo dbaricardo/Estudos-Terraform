@@ -7,11 +7,19 @@ module "rg" {
 
 module "storage_account" {
     source = "./modules/storage_account"
-    depends_on = [module.rg]
+    depends_on = [
+      module.rg
+    ]
 }
 
+module "asp" {
+  source = "./modules/asp"
 
-module "vnet" {
-    source = "./modules/vnet"
-    depends_on = [module.vnet]   
+  asp_name = "asp-ciano"
+  asp_location = "brazilsouth"
+  asp_kind = "Windows"
+  asp_resource_group_name = "rg-ciano"
+  depends_on = [
+    module.rg
+  ]
 }
